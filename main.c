@@ -2,7 +2,7 @@
 
 void usart_init(void)
 {
-	UCSRB= (1<<RXCIE)|(1<<RXEN)|(1<<TXEN); ; //enable RX, TX and interrupt on RX
+	UCSRB= (1<<RXCIE)|(1<<RXEN)|(1<<TXEN); ; 
 	UBRRH=0;
 	UBRRL=51;	
 }
@@ -59,7 +59,7 @@ void command_processing(char* b1ptr)
 							}
 	}
 	
-	//работа с таймерами
+	//Г°Г ГЎГ®ГІГ  Г± ГІГ Г©Г¬ГҐГ°Г Г¬ГЁ
 	
 	if ((b1ptr[0]=='t')&&(b1ptr[1]=='i')&&(b1ptr[2]=='m')&&(b1ptr[3]=='e')&&(b1ptr[4]=='r'))
 	
@@ -88,7 +88,7 @@ void command_processing(char* b1ptr)
 			}
 	}
 	
-	//работа с SPI
+	//Г°Г ГЎГ®ГІГ  Г± SPI
 	
 	if ((b1ptr[0]=='s')&&(b1ptr[1]=='p')&&(b1ptr[2]=='i'))
 	
@@ -144,11 +144,10 @@ void send_string(char* bptr, char size)
 
 void tim_3x_start(void)
 {
-	TCCR1B|=(1<<CS11); //8000000/8=1000000
+	TCCR1B|=(1<<CS11); 
 	OCR1AH = 0x01;
-	OCR1AL = 0xF4; //записываем в регистр сравнения 1000
+	OCR1AL = 0xF4; 
 	TIMSK|= (1<<OCIE1A);
-	
 }
 
 void tim_pwm_start(void)
@@ -169,7 +168,7 @@ void timer_stop(void)
 
 void spi_init(void)
 {
-	SPCR|=(1<<SPE)|(1<<MSTR)|(1<<SPR0); //включение SPI, режим мастера
+	SPCR|=(1<<SPE)|(1<<MSTR)|(1<<SPR0); 
 		
 }
 
@@ -201,7 +200,7 @@ int main (void)
 	
 	spi_init();
 		
-	SREG=(1<<7); //глобальное разрешение прерываний
+	SREG=(1<<7); 
 	flag=0;
 	
 	ptr=0;
@@ -220,7 +219,7 @@ ISR(USART_RXC_vect)
 	switch (rxbyte)
 	
 	{		
-		case 0x0D: 																//Enter - признак окончания ввода команды
+		case 0x0D: 																//Enter - ГЇГ°ГЁГ§Г­Г ГЄ Г®ГЄГ®Г­Г·Г Г­ГЁГї ГўГўГ®Г¤Г  ГЄГ®Г¬Г Г­Г¤Г»
 				{ 	
 					flag=1;
 					ptr=0 ;
@@ -251,9 +250,9 @@ ISR(USART_RXC_vect)
 }
 
 
-ISR(TIMER1_COMPA_vect) //формируем три генератора от Таймера1: вывод PC0 - 1Гц, вывод PC1 - 10 Гц, PC2 - 100 Гц
+ISR(TIMER1_COMPA_vect) 
 {
-	TCNT1H=0;//обнуляем регистр TCNT1
+	TCNT1H=0;
 	TCNT1L=0;
 		
 	div1000++;
