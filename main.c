@@ -2,7 +2,7 @@
 
 void usart_init(void)
 {
-	UCSRB= (1<<RXCIE)|(1<<RXEN)|(1<<TXEN); ; 
+	UCSRB= (1<<RXCIE)|(1<<RXEN)|(1<<TXEN); ; //enable RX, TX and interrupt on RX
 	UBRRH=0;
 	UBRRL=51;	
 }
@@ -23,17 +23,13 @@ void command_processing(char* b1ptr)
 							{
 								if (b1ptr[9]&0x0F)
 									{
-										//ch=(b1ptr[7]&0x0F);
 										PORTB|=(1<<(b1ptr[7]&0x0F));
-										_delay_ms(5);
 										send_string("OK\r\n",4);
 									}
 									
 								else 
 									{
-										//ch=(b1ptr[7]&0x0F);
 										PORTB&=~(1<<(b1ptr[7]&0x0F));
-										_delay_ms(5);
 										send_string("OK\r\n",4);
 									}
 							}
@@ -43,23 +39,17 @@ void command_processing(char* b1ptr)
 							{
 								if (b1ptr[9]&0x0F)
 									{
-										//ch=(b1ptr[7]&0x0F);
 										PORTC|=(1<<(b1ptr[7]&0x0F));
-										_delay_ms(5);
 										send_string("OK\r\n",4);
 									}
 									
 								else 
 									{
-										//ch=(b1ptr[7]&0x0F);
 										PORTC&=~(1<<(b1ptr[7]&0x0F));
-										_delay_ms(5);
 										send_string("OK\r\n",4);
 									}
 							}
 	}
-	
-	//Ã°Ã Ã¡Ã®Ã²Ã  Ã± Ã²Ã Ã©Ã¬Ã¥Ã°Ã Ã¬Ã¨
 	
 	if ((b1ptr[0]=='t')&&(b1ptr[1]=='i')&&(b1ptr[2]=='m')&&(b1ptr[3]=='e')&&(b1ptr[4]=='r'))
 	
@@ -87,8 +77,6 @@ void command_processing(char* b1ptr)
 				timer_stop();
 			}
 	}
-	
-	//Ã°Ã Ã¡Ã®Ã²Ã  Ã± SPI
 	
 	if ((b1ptr[0]=='s')&&(b1ptr[1]=='p')&&(b1ptr[2]=='i'))
 	
@@ -169,7 +157,6 @@ void timer_stop(void)
 void spi_init(void)
 {
 	SPCR|=(1<<SPE)|(1<<MSTR)|(1<<SPR0); 
-		
 }
 
 
@@ -200,7 +187,7 @@ int main (void)
 	
 	spi_init();
 		
-	SREG=(1<<7); 
+	SREG=(1<<7); //global interrupt enable
 	flag=0;
 	
 	ptr=0;
@@ -219,7 +206,7 @@ ISR(USART_RXC_vect)
 	switch (rxbyte)
 	
 	{		
-		case 0x0D: 																//Enter - Ã¯Ã°Ã¨Ã§Ã­Ã Ãª Ã®ÃªÃ®Ã­Ã·Ã Ã­Ã¨Ã¿ Ã¢Ã¢Ã®Ã¤Ã  ÃªÃ®Ã¬Ã Ã­Ã¤Ã»
+		case 0x0D: 																//Enter - ïðèçíàê îêîí÷àíèÿ ââîäà êîìàíäû
 				{ 	
 					flag=1;
 					ptr=0 ;
@@ -250,7 +237,7 @@ ISR(USART_RXC_vect)
 }
 
 
-ISR(TIMER1_COMPA_vect) 
+ISR(TIMER1_COMPA_vect)
 {
 	TCNT1H=0;
 	TCNT1L=0;
