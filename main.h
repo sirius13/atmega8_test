@@ -34,7 +34,7 @@ void spi_init(void);
 void spi_send_buffer(void);
 char spi_send_byte(char byte);
 
-void tim_3x_start(void); 	//oscillator 3-out 1, 10 and 1000 Hz - pins PC0, PC1 è PC2
+void tim_3x_start(void); 	//oscillator 3-out 1, 10 and 1000 Hz - pins PC0, PC1 and PC2
 void tim_pwm_start(void);	//PWM mode oscillator
 void timer_stop(void);		//oscillator stop 
 
