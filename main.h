@@ -9,7 +9,7 @@ volatile char rxbyte;
 char cnt;
 char input_buffer[64]={0};
 
-//spi output buffer					
+//буфер данных на отправку				
 char SPI_TXbuf[64]={0x00,0x01,0x03,0x04,0x05,0x06,0x07,0x08,0x09,0x0A,0x0B,0x0C,0x0d,0x0D,0x0E,0x0F,
 					0x10,0x11,0x12,0x13,0x14,0x15,0x16,0x17,0x18,0x19,0x1A,0x1B,0x1C,0x1D,0x1E,0x1F,
 					0x20,0x21,0x22,0x23,0x24,0x25,0x26,0x27,0x28,0x29,0x2A,0x2B,0x2C,0x2D,0x2E,0x2F,
@@ -26,16 +26,16 @@ volatile char flag1=0;
 short div1000=0;
 char div10=0,div100=0;
 
-void usart_init(void);
-void send_string(char* bptr, char size);
-void command_processing(char* b1ptr);
+void usart_init(void);						//инициация UART
+void send_string(char* bptr, char size);	//посылка строки
+void command_processing(char* b1ptr);		//обработчик сообщений терминала
 
-void spi_init(void);
-void spi_send_buffer(void);
-char spi_send_byte(char byte);
+void spi_init(void);						//инициация SPI
+void spi_send_buffer(void);					//неблокирующая отправка буфера SPI_TXbuf[64]
+char spi_send_byte(char byte);				//отправка байта
 
-void tim_3x_start(void); 	//oscillator 3-out 1, 10 and 1000 Hz - pins PC0, PC1 and PC2
-void tim_pwm_start(void);	//PWM mode oscillator
-void timer_stop(void);		//oscillator stop 
+void tim_3x_start(void); 	//формирование тактовых сигналов 1 Гц, 10 Гц и 100 Гц на выводах PCO, PC1 и PC2
+void tim_pwm_start(void);	//режим ШИМ генератора
+void timer_stop(void);		//останавливаем генератор
 
 
