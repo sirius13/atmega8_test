@@ -199,7 +199,7 @@ int main (void)
 
 }
 
-ISR(USART_RXC_vect)
+ISR(USART_RXC_vect)		//прерывание UART по приему байта 
 {
 	rxbyte = UDR;
 	
