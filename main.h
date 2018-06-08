@@ -26,7 +26,7 @@ volatile char flag1=0;
 short div1000=0;
 char div10=0,div100=0;
 
-void usart_init(void);				/инициация UART
+void usart_init(void);				//инициация UART
 void send_string(char* bptr, char size);	//посылка строки
 void command_processing(char* b1ptr);		//обработчик сообщений терминала
 
