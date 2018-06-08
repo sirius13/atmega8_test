@@ -9,7 +9,7 @@ volatile char rxbyte;
 char cnt;
 char input_buffer[64]={0};
 
-//буфер данных на отправку				
+//ГЎГіГґГҐГ° Г¤Г Г­Г­Г»Гµ Г­Г  Г®ГІГЇГ°Г ГўГЄГі				
 char SPI_TXbuf[64]={0x00,0x01,0x03,0x04,0x05,0x06,0x07,0x08,0x09,0x0A,0x0B,0x0C,0x0d,0x0D,0x0E,0x0F,
 					0x10,0x11,0x12,0x13,0x14,0x15,0x16,0x17,0x18,0x19,0x1A,0x1B,0x1C,0x1D,0x1E,0x1F,
 					0x20,0x21,0x22,0x23,0x24,0x25,0x26,0x27,0x28,0x29,0x2A,0x2B,0x2C,0x2D,0x2E,0x2F,
@@ -26,16 +26,15 @@ volatile char flag1=0;
 short div1000=0;
 char div10=0,div100=0;
 
-void usart_init(void);						//инициация UART
-void send_string(char* bptr, char size);	//посылка строки
-void command_processing(char* b1ptr);		//обработчик сообщений терминала
+void usart_init(void);						//ГЁГ­ГЁГ¶ГЁГ Г¶ГЁГї UART
+void send_string(char* bptr, char size);	//Г®Г®ГЎГ№ГҐГ­ГЁГ© ГІГҐГ°Г¬ГЁГ­Г Г«Г 
 
-void spi_init(void);						//инициация SPI
-void spi_send_buffer(void);					//неблокирующая отправка буфера SPI_TXbuf[64]
-char spi_send_byte(char byte);				//отправка байта
+void spi_init(void);						//ГЁГ­ГЁГ¶ГЁГ Г¶ГЁГї SPI
+void spi_send_buffer(void);					//Г­ГҐГЎГ«Г®ГЄГЁГ°ГіГѕГ№Г Гї Г®ГІГЇГ°Г ГўГЄГ  ГЎГіГґГҐГ°Г  SPI_TXbuf[64]
+char spi_send_byte(char byte);				//Г®ГІГЇГ°Г ГўГЄГ  ГЎГ Г©ГІГ 
 
-void tim_3x_start(void); 	//формирование тактовых сигналов 1 Гц, 10 Гц и 100 Гц на выводах PCO, PC1 и PC2
-void tim_pwm_start(void);	//режим ШИМ генератора
-void timer_stop(void);		//останавливаем генератор
+void tim_3x_start(void); 	//ГґГ®Г°Г¬ГЁГ°Г®ГўГ Г­ГЁГҐ ГІГ ГЄГІГ®ГўГ»Гµ Г±ГЁГЈГ­Г Г«Г®Гў 1 ГѓГ¶, 10 ГѓГ¶ ГЁ 100 ГѓГ¶ Г­Г  ГўГ»ГўГ®Г¤Г Гµ PCO, PC1 ГЁ PC2
+void tim_pwm_start(void);	//Г°ГҐГ¦ГЁГ¬ ГГ€ГЊ ГЈГҐГ­ГҐГ°Г ГІГ®Г°Г 
+void timer_stop(void);		//Г®Г±ГІГ Г­Г ГўГ«ГЁГўГ ГҐГ¬ ГЈГҐГ­ГҐГ°Г ГІГ®Г°
 
 
