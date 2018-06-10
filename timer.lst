@@ -1,0 +1,94 @@
+   1               		.file	"timer.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	tim_3x_start
+  18               	tim_3x_start:
+  19               	.LFB6:
+  20               	.LM1:
+  21               	/* prologue: function */
+  22               	/* frame size = 0 */
+  23               	.LM2:
+  24 0000 8EB5      		in r24,78-32
+  25 0002 8260      		ori r24,lo8(2)
+  26 0004 8EBD      		out 78-32,r24
+  27               	.LM3:
+  28 0006 81E0      		ldi r24,lo8(1)
+  29 0008 8BBD      		out 75-32,r24
+  30               	.LM4:
+  31 000a 84EF      		ldi r24,lo8(-12)
+  32 000c 8ABD      		out 74-32,r24
+  33               	.LM5:
+  34 000e 89B7      		in r24,89-32
+  35 0010 8061      		ori r24,lo8(16)
+  36 0012 89BF      		out 89-32,r24
+  37               	/* epilogue start */
+  38               	.LM6:
+  39 0014 0895      		ret
+  40               	.LFE6:
+  42               	.global	tim_pwm_start
+  44               	tim_pwm_start:
+  45               	.LFB7:
+  46               	.LM7:
+  47               	/* prologue: function */
+  48               	/* frame size = 0 */
+  49               	.LM8:
+  50 0016 8EB5      		in r24,78-32
+  51 0018 8260      		ori r24,lo8(2)
+  52 001a 8EBD      		out 78-32,r24
+  53               	.LM9:
+  54 001c 8FB5      		in r24,79-32
+  55 001e 8168      		ori r24,lo8(-127)
+  56 0020 8FBD      		out 79-32,r24
+  57               	.LM10:
+  58 0022 8FE0      		ldi r24,lo8(15)
+  59 0024 90E0      		ldi r25,hi8(15)
+  60 0026 9BBD      		out (74)+1-32,r25
+  61 0028 8ABD      		out 74-32,r24
+  62               	/* epilogue start */
+  63               	.LM11:
+  64 002a 0895      		ret
+  65               	.LFE7:
+  67               	.global	timer_stop
+  69               	timer_stop:
+  70               	.LFB8:
+  71               	.LM12:
+  72               	/* prologue: function */
+  73               	/* frame size = 0 */
+  74               	.LM13:
+  75 002c 1EBC      		out 78-32,__zero_reg__
+  76               	.LM14:
+  77 002e 1FBC      		out 79-32,__zero_reg__
+  78               	.LM15:
+  79 0030 19BE      		out 89-32,__zero_reg__
+  80               	.LM16:
+  81 0032 1BBC      		out 75-32,__zero_reg__
+  82               	.LM17:
+  83 0034 1ABC      		out 74-32,__zero_reg__
+  84               	/* epilogue start */
+  85               	.LM18:
+  86 0036 0895      		ret
+  87               	.LFE8:
+  89               		.comm gPointer,2,1
+  90               		.comm gCounter,2,1
+ 131               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 timer.c
+C:\Users\AGENTS~1\AppData\Local\Temp/cczEO6fM.s:2      *ABS*:0000003f __SREG__
+C:\Users\AGENTS~1\AppData\Local\Temp/cczEO6fM.s:3      *ABS*:0000003e __SP_H__
+C:\Users\AGENTS~1\AppData\Local\Temp/cczEO6fM.s:4      *ABS*:0000003d __SP_L__
+C:\Users\AGENTS~1\AppData\Local\Temp/cczEO6fM.s:5      *ABS*:00000034 __CCP__
+C:\Users\AGENTS~1\AppData\Local\Temp/cczEO6fM.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\AGENTS~1\AppData\Local\Temp/cczEO6fM.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\AGENTS~1\AppData\Local\Temp/cczEO6fM.s:18     .text:00000000 tim_3x_start
+C:\Users\AGENTS~1\AppData\Local\Temp/cczEO6fM.s:44     .text:00000016 tim_pwm_start
+C:\Users\AGENTS~1\AppData\Local\Temp/cczEO6fM.s:69     .text:0000002c timer_stop
+                            *COM*:00000002 gPointer
+                            *COM*:00000002 gCounter
+
+UNDEFINED SYMBOLS
+__do_clear_bss

@@ -1,0 +1,64 @@
+   1               		.file	"spi.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	spi_init
+  18               	spi_init:
+  19               	.LFB2:
+  20               	.LM1:
+  21               	/* prologue: function */
+  22               	/* frame size = 0 */
+  23               	.LM2:
+  24 0000 8DB1      		in r24,45-32
+  25 0002 8165      		ori r24,lo8(81)
+  26 0004 8DB9      		out 45-32,r24
+  27               	/* epilogue start */
+  28               	.LM3:
+  29 0006 0895      		ret
+  30               	.LFE2:
+  32               	.global	spi_send_buffer
+  34               	spi_send_buffer:
+  35               	.LFB3:
+  36               	.LM4:
+  37               	.LVL0:
+  38               	/* prologue: function */
+  39               	/* frame size = 0 */
+  40 0008 FC01      		movw r30,r24
+  41               	.LM5:
+  42 000a 6F9A      		sbi 45-32,7
+  43               	.LM6:
+  44 000c 9093 0000 		sts (gPointer)+1,r25
+  45 0010 8093 0000 		sts gPointer,r24
+  46               	.LM7:
+  47 0014 7093 0000 		sts (gCounter)+1,r23
+  48 0018 6093 0000 		sts gCounter,r22
+  49               	.LM8:
+  50 001c 8081      		ld r24,Z
+  51               	.LVL1:
+  52 001e 8FB9      		out 47-32,r24
+  53               	/* epilogue start */
+  54               	.LM9:
+  55 0020 0895      		ret
+  56               	.LFE3:
+  58               		.comm gPointer,2,1
+  59               		.comm gCounter,2,1
+  92               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 spi.c
+C:\Users\AGENTS~1\AppData\Local\Temp/cc1jF55V.s:2      *ABS*:0000003f __SREG__
+C:\Users\AGENTS~1\AppData\Local\Temp/cc1jF55V.s:3      *ABS*:0000003e __SP_H__
+C:\Users\AGENTS~1\AppData\Local\Temp/cc1jF55V.s:4      *ABS*:0000003d __SP_L__
+C:\Users\AGENTS~1\AppData\Local\Temp/cc1jF55V.s:5      *ABS*:00000034 __CCP__
+C:\Users\AGENTS~1\AppData\Local\Temp/cc1jF55V.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\AGENTS~1\AppData\Local\Temp/cc1jF55V.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\AGENTS~1\AppData\Local\Temp/cc1jF55V.s:18     .text:00000000 spi_init
+C:\Users\AGENTS~1\AppData\Local\Temp/cc1jF55V.s:34     .text:00000008 spi_send_buffer
+                            *COM*:00000002 gPointer
+                            *COM*:00000002 gCounter
+
+UNDEFINED SYMBOLS
+__do_clear_bss

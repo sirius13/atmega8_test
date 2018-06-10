@@ -1,0 +1,1 @@
+<Project name="test"><File path="main.c"></File><File path="global.h"></File><File path="spi.h"></File><File path="uart.c"></File><File path="uart.h"></File><File path="spi.c"></File><File path="timer.c"></File><File path="timer.h"></File></Project>
