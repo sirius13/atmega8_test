@@ -2,18 +2,18 @@
 
 void usart_init(void)
 {
-	UCSRB= (1<<RXCIE)|(1<<RXEN)|(1<<TXEN); ; //ðàçðåøèòü ïðèåì, ïåðåäà÷ó è ïðåðûâàíèå ïî ïðèåìó áàéòà
+	UCSRB= (1<<RXCIE)|(1<<RXEN)|(1<<TXEN); ; //Ñ€Ð°Ð·Ñ€ÐµÑˆÐ¸Ñ‚ÑŒ Ð¿Ñ€Ð¸ÐµÐ¼, Ð¿ÐµÑ€ÐµÐ´Ð°Ñ‡Ñƒ Ð¸ Ð¿Ñ€ÐµÑ€Ñ‹Ð²Ð°Ð½Ð¸Ðµ Ð¿Ð¾ Ð¿Ñ€Ð¸ÐµÐ¼Ñƒ Ð±Ð°Ð¹Ñ‚Ð°
 	UBRRH=0;
 	UBRRL=51;	//Baud rate = 9600
 }
 
-void send_string(uint8_t* bptr) //ôóíêöèÿ îòïðàâêè äàííûõ ÷åðåç òåðìèíàë
+void send_string(uint8_t* bptr) //Ñ„ÑƒÐ½ÐºÑ†Ð¸Ñ Ð¾Ñ‚Ð¿Ñ€Ð°Ð²ÐºÐ¸ Ð´Ð°Ð½Ð½Ñ‹Ñ… Ñ‡ÐµÑ€ÐµÐ· Ñ‚ÐµÑ€Ð¼Ð¸Ð½Ð°Ð»
 {
 		
 	while(*bptr!='\0')
 		{
 			UDR=*bptr;
-			while(!(UCSRA&(1<<UDRE))); //îæèäàåì îêîí÷àíèå ïåðåäà÷è áàéòà
+			while(!(UCSRA&(1<<UDRE))); //Ð¾Ð¶Ð¸Ð´Ð°ÐµÐ¼ Ð¾ÐºÐ¾Ð½Ñ‡Ð°Ð½Ð¸Ðµ Ð¿ÐµÑ€ÐµÐ´Ð°Ñ‡Ð¸ Ð±Ð°Ð¹Ñ‚Ð°
 			bptr++;
 		}
 }
@@ -55,7 +55,7 @@ uint8_t command_processing(uint8_t* inbuf)
 						
 	if(memcmp(inbuf,pb,5)==0)
 						{
-							pin=strtoul((char*)(inbuf+5),0,10); //íàõîäèì íîìåð âûâîäà ÌÊ
+							pin=strtoul((char*)(inbuf+5),0,10); //Ð½Ð°Ñ…Ð¾Ð´Ð¸Ð¼ Ð½Ð¾Ð¼ÐµÑ€ Ð²Ñ‹Ð²Ð¾Ð´Ð° ÐœÐš
 							i=0;
 							
 							while(inbuf[i+1]!='\0') i++;
@@ -76,7 +76,7 @@ uint8_t command_processing(uint8_t* inbuf)
 	
 	if(memcmp(inbuf,pc,5)==0)
 						{
-							pin=strtoul((char*)(inbuf+5),0,10);	//íàõîäèì íîìåð âûâîäà ÌÊ
+							pin=strtoul((char*)(inbuf+5),0,10);	//Ð½Ð°Ñ…Ð¾Ð´Ð¸Ð¼ Ð½Ð¾Ð¼ÐµÑ€ Ð²Ñ‹Ð²Ð¾Ð´Ð° ÐœÐš
 														
 							i=0;
 							while(inbuf[i+1]!='\0') i++;
@@ -97,11 +97,11 @@ uint8_t command_processing(uint8_t* inbuf)
 						
 	if(memcmp(inbuf,spibyte,7)==0) 
 									{										
-										SPDR=strtoul((char*)(inbuf+7),0,16); //ïðåîáðàçóåì ASCII â hex
-										while(!(SPSR & (1<<SPIF))); //îæèäàåì îêîí÷àíèå ïåðåäà÷è áàéòà
+										SPDR=strtoul((char*)(inbuf+7),0,16); //Ð¿Ñ€ÐµÐ¾Ð±Ñ€Ð°Ð·ÑƒÐµÐ¼ ASCII Ð² hex
+										while(!(SPSR & (1<<SPIF))); //Ð¾Ð¶Ð¸Ð´Ð°ÐµÐ¼ Ð¾ÐºÐ¾Ð½Ñ‡Ð°Ð½Ð¸Ðµ Ð¿ÐµÑ€ÐµÐ´Ð°Ñ‡Ð¸ Ð±Ð°Ð¹Ñ‚Ð°
 										send_string(answer);
 										UDR=SPDR;
-										while(!(UCSRA&(1<<UDRE))); //îæèäàåì îêîí÷àíèå ïåðåäà÷è áàéòà
+										while(!(UCSRA&(1<<UDRE))); //Ð¾Ð¶Ð¸Ð´Ð°ÐµÐ¼ Ð¾ÐºÐ¾Ð½Ñ‡Ð°Ð½Ð¸Ðµ Ð¿ÐµÑ€ÐµÐ´Ð°Ñ‡Ð¸ Ð±Ð°Ð¹Ñ‚Ð°
 										send_string(rn);
 										status=1;
 									}
