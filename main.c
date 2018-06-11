@@ -71,8 +71,10 @@ ISR(USART_RXC_vect)
 	{		
 		case 0x0D: 					//Enter - признак окончания ввода команды
 				{ 	
-					if(command_processing(input_buffer)) send_string(OK);
-					else send_string(Err);
+					if(command_processing(input_buffer)) 
+						send_string(OK);
+					else 
+						send_string(Err);
 					memset(input_buffer,0,20);
 					ptr=0;
 					break;
