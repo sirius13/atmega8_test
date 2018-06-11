@@ -11,5 +11,5 @@ uint8_t input_buffer[20];
 uint8_t counter;
 
 void usart_init(void);
-void send_string(uint8_t* bptr); //функция отправки данных через терминал
-uint8_t command_processing(uint8_t* input_buffer);
+void send_string(uint8_t* bptr); 					          //РѕС‚РїСЂР°РІРєР° РґР°РЅРЅС‹С… С‡РµСЂРµР· С‚РµСЂРјРёРЅР°Р»
+uint8_t command_processing(uint8_t* input_buffer);  //РѕР±СЂР°Р±РѕС‚РєР° СЃРѕРѕР±С‰РµРЅРёР№ РѕС‚ С‚РµСЂРјРёРЅР°Р»Р°
