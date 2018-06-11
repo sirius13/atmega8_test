@@ -8,7 +8,7 @@
 #include "spi.h"
 #include "uart.h"
 #include "timer.h"
-#include "string.h"
+
 
 #define F_CPU 8000000UL
 
@@ -20,16 +20,16 @@ ISR(SPI_STC_vect)
 {
 	gPointer++;
 	gCounter--;	
-	if (gCounter==0) SPCR^=(1<<SPIE); //отключаем прерывание по завешению
+	if (gCounter==0) SPCR^=(1<<SPIE); 	//отключаем прерывание по завешению
 	SPDR=*(gPointer);
 }
 
-ISR(TIMER1_COMPA_vect)	//формирование тактовых сигналов 1 Гц, 10 Гц и 100 Гц на выводах PCO, PC1 и PC2 
+ISR(TIMER1_COMPA_vect)					//формирование тактовых сигналов 1 Гц, 10 Гц и 100 Гц на выводах PCO, PC1 и PC2 
 {
 	
-	static uint8_t div10=0;		//делитель на 10 для получения 100 Гц
-	static uint8_t div100=0;	//делитель на 100 для получения 10 Гц
-	static uint16_t div1000=0;	//делитель на 1000 для получения 1 Гц
+	static uint8_t div10=0;				//делитель на 10 для получения 100 Гц
+	static uint8_t div100=0;			//делитель на 100 для получения 10 Гц
+	static uint16_t div1000=0;			//делитель на 1000 для получения 1 Гц
 	
 	TCNT1H=0;
 	TCNT1L=0;
@@ -69,7 +69,7 @@ ISR(USART_RXC_vect)
 	switch (rxbyte)
 	
 	{		
-		case 0x0D: 	//Enter - признак окончания ввода команды
+		case 0x0D: 					//Enter - признак окончания ввода команды
 				{ 	
 					if(command_processing(input_buffer)) send_string(OK);
 					else send_string(Err);
@@ -78,22 +78,22 @@ ISR(USART_RXC_vect)
 					break;
 				}
 				
-		case '+': //уменьшаем скважность ШИМ (увеличиваем заполнение)
+		case '+': 					//уменьшаем скважность ШИМ (увеличиваем заполнение)
 				{
 					 OCR1A+=10;
 					 break;
 				}
 				
-		case '-': //увеличиваем скважность ШИМ (уменьшаем заполнение)
+		case '-':					//увеличиваем скважность ШИМ (уменьшаем заполнение)
 				{
 					 OCR1A-=10;
 					 break;
 				}
 		
-		case 0x20: break; //пропускаем пробелы
+		case 0x20: break; 			//пропускаем пробелы
 				
 				
-		default: //заполняем буфер входных данных
+		default: 					//заполняем буфер входных данных
 				{
 					input_buffer[ptr]=rxbyte;
 					ptr++;
@@ -112,7 +112,7 @@ int main (void)
 	usart_init();
 	send_string(start);
 
-	SREG=(1<<7); //глобальное разрешение прерываний
+	SREG=(1<<7); 					//глобальное разрешение прерываний
 	
 	spi_init();
 
