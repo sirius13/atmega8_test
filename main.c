@@ -20,7 +20,7 @@ ISR(SPI_STC_vect)
 {
 	gPointer++;
 	gCounter--;	
-	if (gCounter==0) SPCR^=(1<<SPIE); 	//отключаем прерывание по завешению
+	if (gCounter==0) SPCR^=(1<<SPIE); 		//отключаем прерывание по завешению передачи
 	SPDR=*(gPointer);
 }
 
@@ -90,7 +90,7 @@ ISR(USART_RXC_vect)
 					 break;
 				}
 		
-		case 0x20: break; 			//пропускаем пробелы
+		case 0x20: break; 				//пропускаем пробелы
 				
 				
 		default: 					//заполняем буфер входных данных
@@ -112,7 +112,7 @@ int main (void)
 	usart_init();
 	send_string(start);
 
-	SREG=(1<<7); 					//глобальное разрешение прерываний
+	SREG=(1<<7); 						//глобальное разрешение прерываний
 	
 	spi_init();
 
