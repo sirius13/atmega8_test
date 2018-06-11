@@ -10,7 +10,7 @@ void usart_init(void)
 void send_string(uint8_t* bptr) 					//функция отправки данных через терминал
 {
 		
-	while(*bptr!='\0')
+	while(*bptr!='\0')						//ищем последний байт массива
 		{
 			UDR=*bptr;
 			while(!(UCSRA&(1<<UDRE))); 			//ожидаем окончание передачи байта
