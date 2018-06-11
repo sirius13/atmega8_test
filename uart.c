@@ -60,14 +60,14 @@ uint8_t command_processing(uint8_t* inbuf)
 							
 							while(inbuf[i+1]!='\0') i++;
 							
-							if (inbuf[i]=='h')			//если включить
+							if (inbuf[i]=='h')			//если включить вывод
  
 											{
 												PORTB|=(1<<pin);
 												status=1;
 											}
 							
-							if (inbuf[i]=='l')			//если выключить
+							if (inbuf[i]=='l')			//если отключить
 											{
 												PORTB&=~(1<<pin);
 												status=1;
