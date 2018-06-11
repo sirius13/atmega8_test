@@ -3,7 +3,7 @@
 #include <avr/io.h>
 #include <util/delay.h>
 
-void tim_3x_start(void); 	//формирование тактовых сигналов 1 Гц, 10 Гц и 100 Гц на выводах PCO, PC1 и PC2
-void tim_pwm_start(void);	//режим ШИМ генератора
-void timer_stop(void);		//останавливаем генератор
+void tim_3x_start(void); 	//С„РѕСЂРјРёСЂРѕРІР°РЅРёРµ С‚Р°РєС‚РѕРІС‹С… СЃРёРіРЅР°Р»РѕРІ 1 Р“С†, 10 Р“С† Рё 100 Р“С† РЅР° РІС‹РІРѕРґР°С… PCO, PC1 Рё PC2
+void tim_pwm_start(void);	//СЂРµР¶РёРј РЁРРњ РіРµРЅРµСЂР°С‚РѕСЂР°
+void timer_stop(void);		//РѕСЃС‚Р°РЅР°РІР»РёРІР°РµРј РіРµРЅРµСЂР°С‚РѕСЂ
 
